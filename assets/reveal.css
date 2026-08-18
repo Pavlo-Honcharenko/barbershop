@@ -1,0 +1,49 @@
+/* Scroll-reveal animation for elements marked .reveal / .reveal-x (replaces Framer Motion whileInView) */
+.reveal,
+.reveal-x {
+  opacity: 0;
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal { transform: translateY(24px); }
+.reveal-x { transform: translateX(20px); }
+.reveal.is-visible,
+.reveal-x.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-x {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mobile navigation overlay (replaces the client-only React mobile menu) */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: #fff;
+  border-top: 1px solid hsl(var(--border, 0 0% 88%));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+  padding: 1rem 1.25rem 1.5rem;
+}
+.mobile-menu[hidden] { display: none; }
+.mobile-menu__link {
+  text-align: left;
+  padding: .75rem 0;
+  border-bottom: 1px solid hsl(var(--border, 0 0% 88%));
+  color: hsl(var(--foreground, 0 0% 4%));
+  font-size: .9rem;
+}
+.mobile-menu__link:last-of-type { border-bottom: 0; }
+
+@media (min-width: 768px) {
+  .mobile-menu { display: none !important; }
+}
