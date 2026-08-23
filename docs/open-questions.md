@@ -6,27 +6,18 @@
 
 `index.html`, секція `#contact` — форма шле `POST /api/contact/contact-us`. Це internal API GoDaddy Airo, не існує поза платформою. TODO-коментар вже в коді перед `<form>`.
 
-**Треба вирішити:** чим замінити на новому хостингу — PHP mail script, сторонній сервіс (Formspree тощо), чи щось інше. Залежить від того, що дає хостинг власника барбершопу.
+**Статус:** відкрито навмисно. За планом (`docs/ghl-roadmap` в памʼяті проєкту) форма буде замінена на нативну форму GoHighLevel при переносі сайту на GHL (Фаза E). До того часу не чіпати.
 
-## 2. Домен у метаданих не збігається з реальним
+## 2. Домен у метаданих не збігається з реальним — ✅ вирішено (2026-08-23)
 
-У `<head>` `index.html`:
-- `<link rel="canonical" href="https://519barbershop.com"/>` (другий, дублює перший з `.ca`)
-- `og:url` → `519barbershop.com`
-- JSON-LD (`@graph`) — усі `@id`/`url` теж на `519barbershop.com`
+Прибрано дублікат `<link rel="canonical" href="https://519barbershop.com"/>`. `og:url` і всі `@id`/`url` в JSON-LD приведені до `https://519barbershop.ca/`. Лишився один canonical, на `.ca`.
 
-Реальний домен — `519barbershop.ca`. Перший `<link rel="canonical" href="https://519barbershop.ca/">` правильний, другий (з `.com`) — ні.
+## 3. Ліцензія на Getty-фото в галереї — ✅ вирішено (2026-08-23)
 
-**Треба вирішити:** прибрати дублікат canonical і замінити всі `.com` на `.ca`, чи навпаки — уточнити в Саймона/власника, який домен основний.
+6 фото секції "Fresh Cuts, Every Time" (`images/gallery-1..6.jpg`) були Getty stock-фото, підключені через GoDaddy (`img1.wsimg.com/isteam/getty/...`).
 
-## 3. Ліцензія на Getty-фото в галереї
+Getty-фото `gallery-1/2/3/5` видалено. Галерея тепер складається з реальних фото барбершопу (`docs/Barber other files/to-gallery/`, опис — памʼять `barbershop_photo_inventory`): `gallery-4`, `gallery-6` (лишились з попередньої заміни) + `gallery-7..14`, `gallery-16..20` (нові). `images/gaming-arcade.jpg` теж вже реальне фото (IMG_7330), заміна від 2026-08-23.
 
-6 фото секції "Fresh Cuts, Every Time" (`images/gallery-1..6.jpg`) — Getty stock-фото, підключені через GoDaddy (`img1.wsimg.com/isteam/getty/...`), зараз завантажені локально байтами.
+## 4. Favicon — тимчасовий плейсхолдер — ✅ вирішено (2026-08-23)
 
-**Треба вирішити:** чи покриває ліцензія GoDaddy використання цих фото поза їх платформою. Рекомендація — замінити на реальні фото барбершопу власника, коли вони з'являться.
-
-## 4. Favicon — тимчасовий плейсхолдер
-
-`favicon.ico` — це SVG-заглушка за замовчуванням від GoDaddy Airo (фіолетовий квадрат), не справжній логотип-іконка.
-
-**Треба вирішити:** чи робити нормальну favicon з логотипу барбершопу.
+`favicon.ico` тепер згенеровано з barber-pole іконки логотипу (`images/logo-horizontal.png`), multi-size ICO (16/32/48/64px) + `images/apple-touch-icon.png` (180px) підключено в `<head>`.

@@ -1,0 +1,9 @@
+A couple of quick points: 
+
+1. Please ensure no plugins or databases exist on this new website to protect the cpanel that it is on.
+2. If you need SMTP or basic email settings toggled or configured in Cpanel, let me know. I can do it. 
+
+We need the Form emails to go to the following email addresses:
+
+simon.olszewski@trudigitalmedia.com
+szebian83@hotmail.com
