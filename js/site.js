@@ -19,11 +19,7 @@
   var header = document.querySelector("header");
   if (header) {
     var onHeaderScroll = function () {
-      var scrolled = window.scrollY > 20;
-      header.classList.toggle("bg-white", !scrolled);
-      header.classList.toggle("bg-white/95", scrolled);
-      header.classList.toggle("backdrop-blur-sm", scrolled);
-      header.classList.toggle("shadow-sm", scrolled);
+      header.classList.toggle("header--scrolled", window.scrollY > 20);
     };
     window.addEventListener("scroll", onHeaderScroll, { passive: true });
     onHeaderScroll();

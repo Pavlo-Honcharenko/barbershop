@@ -1,0 +1,10 @@
+.icon {
+  display: block;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+}
+
+.icon--accent {
+  color: hsl(var(--accent));
+}
