@@ -12,11 +12,11 @@
 
 Прибрано дублікат `<link rel="canonical" href="https://519barbershop.com"/>`. `og:url` і всі `@id`/`url` в JSON-LD приведені до `https://519barbershop.ca/`. Лишився один canonical, на `.ca`.
 
-## 3. Ліцензія на Getty-фото в галереї
+## 3. Ліцензія на Getty-фото в галереї — ✅ вирішено (2026-08-23)
 
-6 фото секції "Fresh Cuts, Every Time" (`images/gallery-1..6.jpg`) — Getty stock-фото, підключені через GoDaddy (`img1.wsimg.com/isteam/getty/...`), зараз завантажені локально байтами.
+6 фото секції "Fresh Cuts, Every Time" (`images/gallery-1..6.jpg`) були Getty stock-фото, підключені через GoDaddy (`img1.wsimg.com/isteam/getty/...`).
 
-**Статус:** частково в роботі. Реальні фото барбершопу отримані (`docs/Barber other files/`, опис — памʼять `barbershop_photo_inventory`), gallery-фото ще не замінені — чекаємо мапінг "яке фото на яке місце" від власника. `images/gaming-arcade.jpg` вже замінено на реальне фото (IMG_7330) 2026-08-23.
+Getty-фото `gallery-1/2/3/5` видалено. Галерея тепер складається з реальних фото барбершопу (`docs/Barber other files/to-gallery/`, опис — памʼять `barbershop_photo_inventory`): `gallery-4`, `gallery-6` (лишились з попередньої заміни) + `gallery-7..14`, `gallery-16..20` (нові). `images/gaming-arcade.jpg` теж вже реальне фото (IMG_7330), заміна від 2026-08-23.
 
 ## 4. Favicon — тимчасовий плейсхолдер — ✅ вирішено (2026-08-23)
 
