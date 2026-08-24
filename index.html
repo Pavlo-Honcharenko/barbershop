@@ -63,7 +63,14 @@
     <link rel="preload" as="image" href="images/logo-horizontal.png" fetchpriority="high" /><link
       rel="preload"
       as="image"
-      href="images/hero-shop.jpg"
+      href="images/hero-mobile.webp"
+      media="(max-width: 1024px)"
+      fetchpriority="high"
+    /><link
+      rel="preload"
+      as="image"
+      href="images/hero-bg-pc.webp"
+      media="(min-width: 1025px)"
       fetchpriority="high"
     />
     <header class="header">
@@ -416,16 +423,6 @@
                 class="gallery__image"
                 src="images/gallery-14.webp"
                 alt="Barber tools flatlay"
-                loading="lazy"
-                width="1000"
-                height="750"
-              />
-            </div>
-            <div class="gallery__item reveal">
-              <img
-                class="gallery__image"
-                src="images/gallery-16.webp"
-                alt="Classic haircut for senior client"
                 loading="lazy"
                 width="1000"
                 height="750"

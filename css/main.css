@@ -474,11 +474,17 @@ h6 {
 .hero__media {
   position: absolute;
   inset: 0;
-  background-image: url("../images/hero-shop.jpg");
+  background-image: url("../images/hero-mobile.webp");
   background-size: cover;
   background-position: 45% center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+@media (min-width: 1025px) {
+  .hero__media {
+    background-image: url("../images/hero-bg-pc.webp");
+  }
 }
 
 .hero__overlay {
@@ -487,9 +493,10 @@ h6 {
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    hsl(0 0% 0% / 0.6) 0%,
-    hsl(0 0% 0% / 0.45) 45%,
-    hsl(0 0% 0% / 0.75) 100%
+    hsl(0 0% 0% / 0.8) 0%,
+    hsl(0 0% 0% / 0.55) 25%,
+    hsl(0 0% 0% / 0.4) 50%,
+    hsl(0 0% 0% / 0.15) 100%
   );
 }
 
@@ -542,6 +549,9 @@ h6 {
   letter-spacing: 0.02em;
   line-height: 1;
   color: hsl(0 0% 100%);
+  text-shadow:
+    0 1px 3px hsl(0 0% 0% / 0.9),
+    0 2px 10px hsl(0 0% 0% / 0.8);
 }
 
 @media (min-width: 480px) {
@@ -556,6 +566,9 @@ h6 {
   text-transform: uppercase;
   color: hsl(0 0% 100% / 0.75);
   margin-top: 0.25rem;
+  text-shadow:
+    0 1px 3px hsl(0 0% 0% / 0.9),
+    0 2px 10px hsl(0 0% 0% / 0.8);
 }
 @media (min-width: 480px) {
   .hero__logo-tagline {
@@ -952,7 +965,7 @@ h6 {
 }
 
 .gallery__item:hover .gallery__image {
-  transform: scale(1.03);
+  transform: scale(1.08);
 }
 
 .reviews {
