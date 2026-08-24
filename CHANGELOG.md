@@ -2,6 +2,8 @@
 
 Auto-generated from git history.
 
+- before last changes (2026-08-24)
+- chore: update CHANGELOG [skip ci] (2026-08-23)
 - Merge feat/scss-bem-rewrite: static HTML/CSS/JS rewrite (2026-08-23)
 - FIXED (2026-08-23)
 - feat: rebuild Hero section with real photo and live text overlay (2026-08-23)
