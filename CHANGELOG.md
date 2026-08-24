@@ -2,6 +2,8 @@
 
 Auto-generated from git history.
 
+- Hero Mobile bg (2026-08-24)
+- chore: update CHANGELOG [skip ci] (2026-08-24)
 - Hero bg parallax (2026-08-24)
 - chore: update CHANGELOG [skip ci] (2026-08-24)
 - Mobile version (2026-08-24)
