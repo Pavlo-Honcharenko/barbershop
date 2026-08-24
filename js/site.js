@@ -4,14 +4,37 @@
   "use strict";
 
   /* 1. Mobile menu */
+  var MENU_TRANSITION_MS = 250; /* must match .mobile-menu transition duration in main.css */
   var menuToggle = document.getElementById("mobile-menu-toggle");
   var menu = document.getElementById("mobile-menu");
+  var menuCloseTimer = null;
+
+  function openMenu() {
+    clearTimeout(menuCloseTimer);
+    menu.hidden = false;
+    void menu.offsetWidth; /* force reflow so the opening transition runs */
+    menu.classList.add("mobile-menu--open");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close menu");
+  }
+
+  function closeMenu() {
+    menu.classList.remove("mobile-menu--open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open menu");
+    clearTimeout(menuCloseTimer);
+    menuCloseTimer = setTimeout(function () {
+      menu.hidden = true;
+    }, MENU_TRANSITION_MS);
+  }
+
   if (menuToggle && menu) {
     menuToggle.addEventListener("click", function () {
-      var willOpen = menu.hidden;
-      menu.hidden = !willOpen;
-      menuToggle.setAttribute("aria-expanded", String(willOpen));
-      menuToggle.setAttribute("aria-label", willOpen ? "Close menu" : "Open menu");
+      if (menu.classList.contains("mobile-menu--open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
   }
 
@@ -31,12 +54,8 @@
     if (!trigger) return;
     var target = document.querySelector(trigger.getAttribute("data-scroll"));
     if (!target) return;
-    if (menu && !menu.hidden) {
-      menu.hidden = true;
-      if (menuToggle) {
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open menu");
-      }
+    if (menu && menu.classList.contains("mobile-menu--open")) {
+      closeMenu();
     }
     target.scrollIntoView({ behavior: "smooth" });
   });
