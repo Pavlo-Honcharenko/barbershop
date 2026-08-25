@@ -2,6 +2,8 @@
 
 Auto-generated from git history.
 
+- After Code Review (2026-08-25)
+- chore: update CHANGELOG [skip ci] (2026-08-25)
 - Before code review (2026-08-25)
 - New images hero (2026-08-25)
 - chore: update CHANGELOG [skip ci] (2026-08-24)
