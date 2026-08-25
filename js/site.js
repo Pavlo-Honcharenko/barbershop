@@ -144,7 +144,9 @@
   if (hero && heroBackdrop) {
     /* Keeps the backdrop exactly as tall as the hero, so it never under- or overshoots it. */
     const syncBackdropHeight = function () {
-      heroBackdrop.style.setProperty("--hero-backdrop-height", `${hero.offsetHeight}px`);
+      /* Set on the root, not heroBackdrop — .hero__overlay is a sibling, not a descendant,
+         so it wouldn't inherit a value set on heroBackdrop itself. */
+      document.documentElement.style.setProperty("--hero-backdrop-height", `${hero.offsetHeight}px`);
     };
 
     syncBackdropHeight();
