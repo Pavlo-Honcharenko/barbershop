@@ -22,6 +22,7 @@
 }
 
 html {
+  background-color: #d0d1c7;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -461,38 +462,77 @@ h6 {
   color: hsl(var(--accent));
 }
 
-.hero {
+.hero { 
   position: relative;
   display: flex;
   align-items: center;
   min-height: 78vh;
   padding-block: 6rem 2.5rem;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .hero {
-    min-height: 86vh;
+    min-height: 82vh;
     padding-block: 8rem 3rem;
   }
 }
-.hero__media {
-  position: absolute;
-  inset: 0;
+/* Stack every section after the hero above the fixed hero-backdrop/overlay (z-index:0):
+   negative z-index against static content isn't reliably honored by iOS WebKit's
+   compositor for fixed layers, so this is an explicit compositor decision instead of
+   relying on paint-order fallback. */
+main > section:not(.hero),
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Viewport-pinned hero backdrop. Not background-attachment:fixed (invisible on iOS WebKit)
+   and not a position:fixed child of .hero (its overflow:hidden cannot clip a fixed element
+   without a transform/filter ancestor). Negative z-index against static content isn't
+   reliably honored by iOS WebKit's compositor for fixed layers, so instead every section
+   below the hero gets an explicit z-index:1 (see their rules) to stack above this z-index:0
+   layer — an explicit compositor decision instead of relying on paint-order fallback.
+   Its height matches the hero, so at scroll 0 the crop is identical to a plain inset:0 cover. */
+.hero-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: var(--hero-backdrop-height, 78vh);
   background-image: url("../images/hero-bg-mobile.webp");
   background-size: cover;
   background-position: 45% center;
   background-repeat: no-repeat;
 }
 
+@media (min-width: 768px) {
+  .hero-backdrop {
+    height: var(--hero-backdrop-height, 80vh);
+  }
+}
+
 @media (min-width: 1025px) {
-  .hero__media {
+  .hero-backdrop {
     background-image: url("../images/hero-bg-pc.webp");
   }
 }
 
+/* Anchor to the document instead of the viewport so the image scrolls with the hero. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-backdrop {
+    position: absolute;
+  }
+}
+
 .hero__overlay {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: var(--hero-backdrop-height, 78vh);
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -503,8 +543,15 @@ h6 {
   );
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero__overlay {
+    position: absolute;
+  }
+}
+
 @media (min-width: 768px) {
   .hero__overlay {
+    height: 100vh;
     background: linear-gradient(
       90deg,
       hsl(0 0% 0% / 1) 0%,
@@ -580,7 +627,7 @@ h6 {
 .hero__title {
   font-family: var(--font-heading);
   text-transform: uppercase;
-  font-size: 8vw;
+  font-size: 6.5vw;
   line-height: 1.05;
   letter-spacing: 0.01em;
   color: hsl(0 0% 100%);
@@ -588,12 +635,12 @@ h6 {
 
 @media (min-width: 640px) {
   .hero__title {
-    font-size: 3.3rem;
+    font-size: 5vw;
   }
 }
 @media (min-width: 1024px) {
   .hero__title {
-    font-size: 65px;
+    font-size: 50px;
   }
 }
 .hero__title-accent {

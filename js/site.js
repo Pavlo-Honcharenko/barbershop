@@ -61,7 +61,12 @@
   });
 
   /* 4. Scroll-reveal (replaces Framer Motion whileInView, viewport:{once:true}) */
-  var revealTargets = document.querySelectorAll(".reveal, .reveal-x");
+  var eagerTargets = document.querySelectorAll(".reveal--eager");
+  eagerTargets.forEach(function (el) {
+    requestAnimationFrame(function () { el.classList.add("is-visible"); });
+  });
+
+  var revealTargets = document.querySelectorAll(".reveal:not(.reveal--eager), .reveal-x:not(.reveal--eager)");
   if ("IntersectionObserver" in window && revealTargets.length) {
     var observer = new IntersectionObserver(
       function (entries) {
@@ -130,5 +135,24 @@
           }
         });
     });
+  }
+
+  /* 6. Hero backdrop height sync — no scroll listener, the parallax is position:fixed itself */
+  const hero = document.querySelector(".hero");
+  const heroBackdrop = document.querySelector(".hero-backdrop");
+
+  if (hero && heroBackdrop) {
+    /* Keeps the backdrop exactly as tall as the hero, so it never under- or overshoots it. */
+    const syncBackdropHeight = function () {
+      heroBackdrop.style.setProperty("--hero-backdrop-height", `${hero.offsetHeight}px`);
+    };
+
+    syncBackdropHeight();
+    window.addEventListener("resize", syncBackdropHeight, { passive: true });
+    window.addEventListener("orientationchange", syncBackdropHeight, { passive: true });
+
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(syncBackdropHeight).observe(hero);
+    }
   }
 })();

@@ -73,6 +73,12 @@
       media="(min-width: 1025px)"
       fetchpriority="high"
     />
+    <!-- Body-level layer on purpose: a position:fixed backdrop must not sit inside .hero. -->
+    <div class="hero-backdrop" role="img" aria-label="519 Barbershop interior"></div>
+    <!-- Fixed sibling of hero-backdrop, not a .hero child: keeps both layers in lockstep
+         during iOS rubber-band overscroll, where document-flow content can outrun a
+         viewport-fixed layer for a frame and expose the raw image underneath. -->
+    <div class="hero__overlay"></div>
     <header class="header">
       <div class="container header__inner">
         <a href="#" class="header__logo"
@@ -128,8 +134,6 @@
     </nav>
     <main>
       <section id="hero" class="hero">
-        <div class="hero__media" role="img" aria-label="519 Barbershop interior"></div>
-        <div class="hero__overlay"></div>
         <div class="hero__inner container">
           <div class="hero__content">
             <div class="hero__logo reveal">
@@ -153,7 +157,7 @@
       <section class="intro">
         <div class="container">
           <div class="intro__inner">
-            <div class="intro__title reveal">
+            <div class="intro__title reveal reveal--eager">
               <h2>Look Sharp.<br />Feel New.</h2>
             </div>
             <div class="intro__subtitle reveal">
@@ -719,7 +723,7 @@
             <div class="gaming__media reveal-x">
               <img
                 class="gaming__image"
-                src="images/gaming-arcade.jpg"
+                src="images/gaming-arcade.webp"
                 alt="Arcade games at 519 Barbershop"
                 loading="lazy"
                 width="800"
